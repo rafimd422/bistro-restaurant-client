@@ -1,17 +1,15 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import './index.css'
-import {
-  createBrowserRouter,
-  RouterProvider,
-  Routes,
-} from "react-router-dom";
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import Routes from "./Routes/Routes";
+import { RouterProvider } from "react-router-dom";
 
+const router = Routes;
 
-const router = Routes
-
-ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
-  </React.StrictMode>,
-)
+    <div className="max-w-screen-xl mx-auto">
+      <RouterProvider router={router} />
+    </div>
+  </React.StrictMode>
+);
