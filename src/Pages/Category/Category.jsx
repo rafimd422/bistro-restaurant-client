@@ -12,6 +12,7 @@ import slide2 from '../../assets/home/slide4.jpg'
 import slide3 from '../../assets/home/slide3.jpg'
 import slide4 from '../../assets/home/slide2.jpg'
 import slide5 from '../../assets/home/slide5.jpg'
+import SectionTitle from './../../Components/SectionTitle/SectionTitle';
 
 
 const Category = () => {
@@ -19,15 +20,10 @@ const Category = () => {
     <>
      <div className='my-8 mt-20'>
 
-<div className="w-full flex flex-col justify-center items-center">
-    <h3 className="text-yellow-600 text-xl">---From 11:00am to 10:00pm---</h3>
-    <hr className='my-3 w-[424px] bg-slate-900 opacity-10  h-1'/>
-    <p className="text-slate-300 md:text-5xl text-3xl">ORDER ONLINE</p>
-    <hr className='my-3 w-[424px] bg-slate-900 opacity-10  h-1'/>
-</div>
+<SectionTitle heading={'From 11:00am to 10:00pm'} subHeading={'ORDER ONLINE'} />
 
      <Swiper
-        slidesPerView={3}
+        slidesPerView={3} 
         spaceBetween={30}
         freeMode={true}
         pagination={{
