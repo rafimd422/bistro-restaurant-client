@@ -36,20 +36,20 @@ const Category = () => {
         modules={[FreeMode, Pagination]}
       >
         <SwiperSlide><img className='h-full w-full' src={slide1} />
-        <h3 className='text-uppercase md:text-4xl sm:text-3xl text-2xl -mt-20 text-white shadow-xl text-center'>
+        <h3 className='text-uppercase md:text-4xl sm:text-3xl text-2xl -mt-20 text-white shadow-xl text-center font-serif'>
            Salads </h3>
             </SwiperSlide>
         <SwiperSlide><img className='h-full w-full' src={slide2} />
-        <h3 className='text-uppercase md:text-4xl sm:text-3xl text-2xl -mt-20 text-white shadow-xl text-center'>
+        <h3 className='text-uppercase md:text-4xl sm:text-3xl text-2xl -mt-20 mb-6 text-white shadow-xl text-center font-serif'>
            Desserts </h3></SwiperSlide>
         <SwiperSlide><img className='h-full w-full' src={slide3} />
-        <h3 className='text-uppercase md:text-4xl sm:text-3xl text-2xl -mt-20 text-white shadow-xl text-center'>
+        <h3 className='text-uppercase md:text-4xl sm:text-3xl text-2xl -mt-20 text-white shadow-xl text-center font-serif'>
            Soups </h3></SwiperSlide>
         <SwiperSlide><img className='h-full w-full' src={slide4} />
-        <h3 className='text-uppercase md:text-4xl sm:text-3xl text-2xl -mt-20 text-white shadow-xl text-center'>
+        <h3 className='text-uppercase md:text-4xl sm:text-3xl text-2xl -mt-20 text-white shadow-xl text-center font-serif'>
            Pizzas </h3></SwiperSlide>
         <SwiperSlide><img className='h-full w-full' src={slide5} />
-        <h3 className='text-uppercase md:text-4xl sm:text-3xl text-2xl -mt-20 text-white shadow-xl text-center'>
+        <h3 className='text-uppercase md:text-4xl sm:text-3xl text-2xl -mt-20 text-white shadow-xl text-center font-serif'>
            Salads </h3></SwiperSlide>
     
       </Swiper>
