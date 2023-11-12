@@ -12,7 +12,7 @@ const FoodCard = ({image,title,subtitle,price}) => {
     <h2 className="card-title">{title}</h2>
     <p>{subtitle}</p>
     <div className="card-actions">
-      <button className="btn btn-primary uppercase">Add To Cart</button>
+      <button className="btn bg-slate-200 text-black hover:bg-black hover:text-yellow-600 uppercase">Add To Cart</button>
     </div>
   </div>
 </div>

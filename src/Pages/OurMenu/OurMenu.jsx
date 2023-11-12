@@ -139,7 +139,7 @@ const OurMenu = () => {
               ))}
             </div>
             <div className="flex justify-center">
-              <Link to={"/shop#salad"}>
+              <Link to={"/shop"}>
                 {" "}
                 <button className="btn btn-outline border-0 mt-4 border-b-4">
                   Order Now
