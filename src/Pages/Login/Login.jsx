@@ -29,7 +29,7 @@ signIn(email, password)
   return (
 <div className="hero min-h-screen login">
  <div className='flex flex-col justify-center items-center gap-4'>
- <h1 className="text-5xl font-bold">Login now!</h1>
+ <h1 className="text-5xl font-bold text-orange-400">Login now!</h1>
  <div className="hero-content flex-col lg:gap-10 lg:justify-between md:flex-row justify-center items-center gap-2">
     <div className="text-center lg:text-left">
       <img src={loginImg} alt="" />
@@ -54,7 +54,7 @@ signIn(email, password)
         <div className="form-control">
         </div>
         </div>
-         <input type="submit" className='btn btn-primary' value="Log in" />
+         <input type="submit" className='btn bg-orange-400 text-white' value="Log in" />
          <p className='text-sm ms-1'>Already Have An Account? <Link className='text-purple-400' to={'/register'}>Register</Link></p>
       </form>
     </div>
