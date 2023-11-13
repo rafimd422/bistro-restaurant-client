@@ -55,7 +55,7 @@ signIn(email, password)
         </div>
         </div>
          <input type="submit" className='btn bg-orange-400 text-white' value="Log in" />
-         <p className='text-sm ms-1'>Already Have An Account? <Link className='text-purple-400' to={'/register'}>Register</Link></p>
+         <p className='text-sm ms-1'>Don't Have An Account? <Link className='text-purple-400' to={'/register'}>Register Now</Link></p>
       </form>
     </div>
   </div>

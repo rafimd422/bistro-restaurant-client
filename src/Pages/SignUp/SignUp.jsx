@@ -3,6 +3,7 @@ import signUpImg from '../../assets/others/authentication2.png'
  import './signUp.css'
 import { useContext } from 'react'
 import { AuthContext } from '../../Provider/AuthProvider'
+import swal from 'sweetalert'
 
 
 
@@ -17,18 +18,22 @@ const handlesignUp = e => {
     const name = form.name.value
     const email = form.email.value
     const password = form.password.value
-console.log(name,email, password)
 createUSer(email, password)
 .then(result => {
   const user = result.user
   console.log(user);
+  swal({
+    title: "Good job!",
+    text: "Registration Successfull",
+    icon: "success"
+  });
 })
 }
 
 
 
   return (
-<div className="hero min-h-screen signUp">
+<div className="hero min-h-screen signup">
  <div className='flex flex-col justify-center items-center gap-4'>
  <h1 className="text-5xl font-bold text-orange-400">signUp now!</h1>
  <div className="hero-content flex-col lg:gap-10 lg:justify-between md:flex-row-reverse justify-center items-center gap-2">
@@ -57,8 +62,8 @@ createUSer(email, password)
         <div className="form-control">
         </div>
         </div>
-         <input type="submit" className='btn bg-orange-400 text-white my-2' value="Log in" />
-         <p className='text-sm ms-1'>Don't Have An Account? <Link className='text-purple-400' to={'/login'}>Log In Now</Link></p>
+         <input type="submit" className='btn bg-orange-400 text-white my-2' value="Sign Up" />
+         <p className='text-sm ms-1'>Already Have An Account? <Link className='text-purple-400' to={'/login'}>Log In Now</Link></p>
       </form>
     </div>
   </div>
