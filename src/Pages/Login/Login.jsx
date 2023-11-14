@@ -1,8 +1,9 @@
-import { Link } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import loginImg from '../../assets/others/authentication2.png'
 import './login.css'
 import { useContext } from 'react'
 import { AuthContext } from '../../Provider/AuthProvider'
+import swal from 'sweetalert'
 
 
 
@@ -10,17 +11,35 @@ import { AuthContext } from '../../Provider/AuthProvider'
 const Login = () => {
 
 const {signIn} = useContext(AuthContext)
-
+const location = useLocation()
+const navigate = useNavigate()
+console.log(location)
 const handleLogin = e => {
     e.preventDefault()
     const form = e.target;
     const email = form.email.value
     const password = form.password.value
 console.log(email, password)
+
+
 signIn(email, password)
 .then(result => {
   const user = result.user
   console.log(user);
+  if(location.pathname !== '/login'){
+    navigate(location.pathname)
+  }else{
+    navigate('/')
+  }
+}
+).catch(error => {
+
+  swal({
+    title: "Error!",
+    text: error.message.replace("Firebase: Error ", ''),
+    icon: "error",
+  });
+  console.log(error.message)
 })
 }
 
