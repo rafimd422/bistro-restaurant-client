@@ -6,12 +6,13 @@ import { AuthContext } from "../../Provider/AuthProvider";
 import swal from "sweetalert";
 
 const signUp = () => {
-  const { createUSer } = useContext(AuthContext);
+  const { createUSer,updateUserProfile } = useContext(AuthContext);
 const navigate = useNavigate()
   const handlesignUp = (e) => {
     e.preventDefault();
     const form = e.target;
     const name = form.name.value;
+    const photoURL = form.photoURL.value;
     const email = form.email.value;
     const password = form.password.value;
 
@@ -26,13 +27,9 @@ const navigate = useNavigate()
 
     createUSer(email, password)
       .then((result) => {
-        const user = result.user;
+        const user = result.user
         console.log(user);
-        swal({
-          title: "Good job!",
-          text: "Registration Successfull",
-          icon: "success",
-        });
+        updateUserProfile(name, photoURL)
         navigate('/')
       })
       .catch((error) => {
@@ -41,7 +38,6 @@ const navigate = useNavigate()
           text: error.message.replace("Firebase: Error ", ""),
           icon: "error",
         });
-        console.log(error.message);
       });
   };
 
@@ -63,6 +59,18 @@ const navigate = useNavigate()
                   type="text"
                   name="name"
                   placeholder="Your Name"
+                  className="input input-bordered"
+                  required
+                />
+              </div>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Photo URL</span>
+                </label>
+                <input
+                  type="url"
+                  name="photoURL"
+                  placeholder="Your Photo URL"
                   className="input input-bordered"
                   required
                 />
