@@ -2,14 +2,17 @@ import React, { useContext } from "react";
 import { AuthContext } from "./../../../Provider/AuthProvider";
 import swal from "sweetalert";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import useCart from './../../../Hooks/useCart';
+
+
 
 const FoodCard = (item) => {
   const { user } = useContext(AuthContext);
   const { image, title, subtitle, price, _id } = item;
   const navigate = useNavigate();
-
-
+  const axiosSecure = useAxiosSecure()
+  const [,refetch] = useCart()
 
 
   const handleAddToCart = () => {
@@ -30,14 +33,14 @@ const FoodCard = (item) => {
       console.log(item);
       navigate("/login");
     }
-axios.post('http://localhost:5000/carts', cartItem)
+    axiosSecure.post('/carts', cartItem)
 .then(res => {
   console.log(res.data)
   if(res.data?.acknowledged){
     swal("Good job!", "Product Added to the Cart", "success");
+    refetch()
   }
-})
-  };
+})};
 
 
 

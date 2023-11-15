@@ -3,12 +3,15 @@ import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from './../../../Provider/AuthProvider';
 import swal from "sweetalert";
 import { FaShoppingCart } from "react-icons/fa";
+import useCart from "../../../Hooks/useCart";
 
 const NavBar = () => {
 
 const {logOut, user} = useContext(AuthContext)
+const [cart] = useCart()
 
 const handleLogOut = () => {
+
   swal({
     title: "Do you want to Log Out From This Account?",
     icon: "warning",
@@ -41,7 +44,7 @@ swal("Log Out Successfull", {
         <NavLink to={"/shop"}>Our shop</NavLink>
       </li>
       <li className="indicator">
-  <span className="flex items-center indicator-item badge badge-primary">0</span> 
+  <span className="flex items-center indicator-item badge badge-primary">{cart.length}</span> 
   <NavLink className={'text-lg'} to={'/cart'}><FaShoppingCart />
 
 </NavLink>
