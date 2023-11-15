@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from './../../../Provider/AuthProvider';
 import swal from "sweetalert";
+import { FaShoppingCart } from "react-icons/fa";
 
 const NavBar = () => {
 
@@ -39,6 +40,12 @@ swal("Log Out Successfull", {
       <li>
         <NavLink to={"/shop"}>Our shop</NavLink>
       </li>
+      <li className="indicator">
+  <span className="flex items-center indicator-item badge badge-primary">0</span> 
+  <NavLink className={'text-lg'} to={'/cart'}><FaShoppingCart />
+
+</NavLink>
+</li>
     </>
   );
   return (
@@ -63,7 +70,7 @@ swal("Log Out Successfull", {
           </label>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52 uppercase"
+            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52 uppercase items-center"
           >
             {navOptions}
           </ul>
