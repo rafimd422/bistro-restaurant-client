@@ -5,8 +5,9 @@ import OurMenu from '../Pages/OurMenu/OurMenu';
 import Order from '../Pages/Shop/Order';
 import Login from '../Pages/Login/Login';
 import SignUp from './../Pages/SignUp/SignUp';
-import Cart from '../Pages/Cart/Cart';
-import PrivateRoute from './PrivateRoute/PrivateRoute';
+// import PrivateRoute from './PrivateRoute/PrivateRoute';
+import Dashboard from './../Layout/Dashboard';
+import Cart from './../Pages/Dashboard/Cart/Cart';
 
 const Routes = createBrowserRouter([
     {
@@ -33,12 +34,20 @@ const Routes = createBrowserRouter([
           path:'/register',
           element: <SignUp />
         },
-        {
-          path:'/cart',
-          element: <PrivateRoute><Cart /></PrivateRoute>
-        },
+
       ]
     },
+     {
+       path:`/`,
+       element:<Dashboard />,
+       children: [
+
+         {
+             path:'/cart',
+             element:<Cart />
+         },
+       ]
+     },
   ]);
 
 export default Routes
