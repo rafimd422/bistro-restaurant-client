@@ -5,7 +5,7 @@ import OurMenu from '../Pages/OurMenu/OurMenu';
 import Order from '../Pages/Shop/Order';
 import Login from '../Pages/Login/Login';
 import SignUp from './../Pages/SignUp/SignUp';
-// import PrivateRoute from './PrivateRoute/PrivateRoute';
+ import PrivateRoute from './PrivateRoute/PrivateRoute';
 import Dashboard from './../Layout/Dashboard';
 import Cart from './../Pages/Dashboard/Cart/Cart';
 
@@ -39,7 +39,7 @@ const Routes = createBrowserRouter([
     },
      {
        path:`/`,
-       element:<Dashboard />,
+       element:<PrivateRoute><Dashboard /></PrivateRoute>,
        children: [
 
          {

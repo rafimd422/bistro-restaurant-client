@@ -6,6 +6,10 @@ import axios from "axios";
 const Cart = () => {
   const [cart, refetch] = useCart();
 
+const totalPrice = cart.reduce((a, b) => {
+ return a + b.price 
+},0);
+
   const handleDelete = (id) => {
     swal({
       title: "Are you sure?",
@@ -40,7 +44,7 @@ const Cart = () => {
     <div className="w-full">
       <div className="flex justify-evenly my-12">
         <h2 className="text-4xl">Items: {cart.length}</h2>
-        <h2 className="text-4xl">Total Price: {cart.length}</h2>
+        <h2 className="text-4xl">Total Price: ${totalPrice}</h2>
         <button className="btn">Pay</button>
       </div>
 

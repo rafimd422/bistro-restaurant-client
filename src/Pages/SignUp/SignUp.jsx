@@ -4,10 +4,13 @@ import "./signUp.css";
 import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import swal from "sweetalert";
+import useAxiosPublic from './../../Hooks/useAxiosPublic';
 
 const signUp = () => {
   const { createUSer,updateUserProfile } = useContext(AuthContext);
-const navigate = useNavigate()
+  const axiosPublic = useAxiosPublic()
+  
+  const navigate = useNavigate()
   const handlesignUp = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -24,12 +27,21 @@ const navigate = useNavigate()
       });
       return;
     }
-
     createUSer(email, password)
       .then((result) => {
+        
         const user = result.user
         console.log(user);
         updateUserProfile(name, photoURL)
+  const userInfo = {
+    name: name,
+    email: email
+  }
+  axiosPublic.post('/users', userInfo)
+  .then(res => {
+    console.log(res.data)
+    console.log('user added to the database')
+  })
         navigate('/')
       })
       .catch((error) => {
