@@ -5,6 +5,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import swal from "sweetalert";
 import useAxiosPublic from './../../Hooks/useAxiosPublic';
+import SocialLogin from './../../Components/SocialLogin/SocialLogin';
 
 const signUp = () => {
   const { createUSer,updateUserProfile } = useContext(AuthContext);
@@ -123,6 +124,8 @@ const signUp = () => {
                   Log In Now
                 </Link>
               </p>
+              <SocialLogin />
+
             </form>
           </div>
         </div>

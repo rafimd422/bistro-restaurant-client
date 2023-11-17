@@ -4,6 +4,7 @@ import './login.css'
 import { useContext } from 'react'
 import { AuthContext } from '../../Provider/AuthProvider'
 import swal from 'sweetalert'
+import SocialLogin from './../../Components/SocialLogin/SocialLogin';
 
 
 
@@ -14,6 +15,9 @@ const {signIn} = useContext(AuthContext)
 const location = useLocation()
 const navigate = useNavigate()
 console.log(location)
+
+
+
 const handleLogin = e => {
     e.preventDefault()
     const form = e.target;
@@ -42,6 +46,7 @@ signIn(email, password)
   console.log(error.message)
 })
 }
+
 
 
 
@@ -75,6 +80,7 @@ signIn(email, password)
         </div>
          <input type="submit" className='btn bg-orange-400 text-white' value="Log in" />
          <p className='text-sm ms-1'>Don't Have An Account? <Link className='text-purple-400' to={'/register'}>Register Now</Link></p>
+<SocialLogin />
       </form>
     </div>
   </div>
