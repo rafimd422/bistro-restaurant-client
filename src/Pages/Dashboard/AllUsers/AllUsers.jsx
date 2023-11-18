@@ -39,6 +39,30 @@ const handleDeleteUser = id => {
   });
 }
 
+const handleMakeAdmin = id => {
+    swal({
+        title: "Are you sure?",
+        text: "Do You want to give the admin role to this user?",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+    axiosSecure.patch(`/users/admin/${id}`)
+    .then(res => {
+        console.log(res.data)
+        if(res.data.modifiedCount > 0){
+            refetch()
+            swal("user got the admin role!", {
+                icon: "success",
+            });
+        }else {
+            swal("User role is not changed");
+          }
+    })
+}});
+}
 
 
   return (
@@ -67,7 +91,7 @@ const handleDeleteUser = id => {
         <th>{idx + 1}</th> 
         <td>{users.name}</td> 
         <td>{users.email}</td> 
-        <td className='cursor-pointer bg-orange-500' onClick={()=> handleDeleteUser(users._id)} ><FaUsers className='mx-auto text-white md:text-lg' /></td> 
+       {users.role === 'admin' ? <td> Admin </td> :  <td className='cursor-pointer bg-orange-500' onClick={()=> handleMakeAdmin(users._id)} ><FaUsers className='mx-auto text-white md:text-lg' /></td> }
         <td className='cursor-pointer ' onClick={()=> handleDeleteUser(users._id)} ><FaTrashAlt className='mx-auto text-red-500 md:text-lg' /></td> 
       </tr>)}
     </tbody> 
