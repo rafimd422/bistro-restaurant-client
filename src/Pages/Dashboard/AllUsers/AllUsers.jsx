@@ -85,7 +85,7 @@ const handleMakeAdmin = id => {
         <th>Action</th>
       </tr>
     </thead> 
-    <tbody>
+    <tbody> 
 
 {data.map((users , idx) => <tr key={idx}>
         <th>{idx + 1}</th> 
