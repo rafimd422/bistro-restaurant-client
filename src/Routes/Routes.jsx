@@ -35,25 +35,25 @@ const Routes = createBrowserRouter([
           path:'/register',
           element: <SignUp />
         },
-
+        {
+          path:`/dashboard`,
+          element:<PrivateRoute><Dashboard /></PrivateRoute>,
+          children: [
+   
+            {
+                path:'/dashboard/cart',
+                element:<Cart />
+            },
+            // Admin Routes
+            {
+                path:'/dashboard/allusers',
+                element:<AllUsers />
+            },
+          ]
+        },
       ]
     },
-     {
-       path:`/`,
-       element:<PrivateRoute><Dashboard /></PrivateRoute>,
-       children: [
 
-         {
-             path:'/cart',
-             element:<Cart />
-         },
-         // Admin Routes
-         {
-             path:'/allusers',
-             element:<AllUsers />
-         },
-       ]
-     },
   ]);
 
 export default Routes

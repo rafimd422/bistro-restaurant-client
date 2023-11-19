@@ -1,10 +1,45 @@
-import axios from "axios"
+import axios from "axios";
+import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../Provider/AuthProvider";
+import Login from './../Pages/Login/Login';
 
-export const axiosSecure = axios.create({
-    baseURL: 'http://localhost:5000'
-})
+const axiosSecure = axios.create({
+  baseURL: "http://localhost:5000",
+});
 const useAxiosSecure = () => {
-  return axiosSecure
-}
+  const { logOut } = useContext(AuthContext);
 
-export default useAxiosSecure
+  const navigate = useNavigate();
+  axiosSecure.interceptors.request.use(
+    function (config) {
+      const token = localStorage.getItem("access-token");
+      console.log("req stops for interceptors", token);
+      config.headers.authorization = `Bearer ${token}`;
+      return config;
+    },
+    function (error) {
+      return Promise.reject(error);
+    }
+  );
+
+  axiosSecure.interceptors.response.use(
+    function (respnse) {
+      return respnse;
+    },
+    function (error) {
+        logOut()
+        .then(() => {
+          localStorage.removeItem("access-token");
+navigate('/login')       
+ });
+
+      console.log("status error in the interceptors", error);
+      return Promise.reject(error);
+    }
+  );
+
+  return axiosSecure;
+};
+
+export default useAxiosSecure;

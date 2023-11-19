@@ -48,7 +48,7 @@ swal("Log Out Successfull", {
       </li>
       <li className="indicator">
   <span className="flex items-center indicator-item badge badge-primary">{cart.length}</span> 
-  <NavLink className={'text-lg'} to={'/cart'}><FaShoppingCart />
+  <NavLink className={'text-lg'} to={'/dashboard/cart'}><FaShoppingCart />
 </NavLink>
 </li>
     </>

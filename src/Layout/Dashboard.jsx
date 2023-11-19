@@ -13,21 +13,21 @@ const isAdmin = true;
 <ul className="menu self pt-16 gap-2">
 {isAdmin ? <>
   <li>
- <NavLink to={'/userHome'}> <FaHome /> Admin Home</NavLink>
+ <NavLink to={'/dashboard/userHome'}> <FaHome /> Admin Home</NavLink>
   </li>
   <li>
- <NavLink to={'/addItems'}> <FaUtensils />Add Items</NavLink>
+ <NavLink to={'/dashboard/addItems'}> <FaUtensils />Add Items</NavLink>
   </li>
   <li>
- <NavLink to={'/manageitems'}> <FaList />Manage Items</NavLink>
-  </li>
-
-  <li>
- <NavLink to={'/bookings'}> <FaBook />Manage Bookings</NavLink>
+ <NavLink to={'/dashboard/manageitems'}> <FaList />Manage Items</NavLink>
   </li>
 
   <li>
- <NavLink to={'/allusers'}> <FaUsers />All users</NavLink>
+ <NavLink to={'/dashboard/bookings'}> <FaBook />Manage Bookings</NavLink>
+  </li>
+
+  <li>
+ <NavLink to={'/dashboard/allusers'}> <FaUsers />All users</NavLink>
   </li>
 
 
@@ -38,13 +38,13 @@ const isAdmin = true;
  <NavLink to={'/'}> <FaHome />User Home</NavLink>
   </li>
 <li>
- <NavLink to={'/menu'}> <FaSearch />Menu</NavLink>
+ <NavLink to={'/dashboard/menu'}> <FaSearch />Menu</NavLink>
   </li>
   <li>
- <NavLink to={'/cart'}> <FaShoppingCart />My cart</NavLink>
+ <NavLink to={'/dashboard/cart'}> <FaShoppingCart />My cart</NavLink>
   </li>
 <li>
- <NavLink to={'/contact'}> <FaEnvelope />contact</NavLink>
+ <NavLink to={'/dashboard/contact'}> <FaEnvelope />contact</NavLink>
   </li>
   </>
 }
