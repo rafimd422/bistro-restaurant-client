@@ -20,6 +20,9 @@ const handleLogOut = () => {
   }).then((willDelete) => {
     if (willDelete) {
       logOut()
+      .then(() => {
+        localStorage.removeItem("access-token");
+      })
 swal("Log Out Successfull", {
   icon: "success",
 });}

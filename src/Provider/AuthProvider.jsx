@@ -10,14 +10,15 @@ import {
 } from "firebase/auth";
 import auth from "./../Firebase/firebase.config";
 import swal from "sweetalert";
+import useAxiosPublic from "../Hooks/useAxiosPublic";
 
 export const AuthContext = createContext(null);
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  const googleProvider = new GoogleAuthProvider()
-
+  const googleProvider = new GoogleAuthProvider();
+   const axiosPublic = useAxiosPublic();
   const createUSer = (email, password) => {
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
@@ -27,11 +28,11 @@ const AuthProvider = ({ children }) => {
     setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
-  
+
   const googleSignIn = () => {
-    setLoading(true)
-    return signInWithPopup(auth, googleProvider)
-  }
+    setLoading(true);
+    return signInWithPopup(auth, googleProvider);
+  };
 
   const logOut = () => {
     setLoading(true);
@@ -52,11 +53,22 @@ const AuthProvider = ({ children }) => {
     });
   };
 
-
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
       console.log("current user", currentUser);
+      if (currentUser !== null) {
+         // get token and store client
+        const userEmail = { email: currentUser.email };
+         axiosPublic.post("/jwt", userEmail)
+         .then(res => {
+           if (res.data?.token) {
+             localStorage.setItem("access-token", res.data?.token);
+           }           
+             //remove token(if token stored in the client side localStorage or somewhere else)
+          
+         });
+      }
       setLoading(false);
     });
     return unSubscribe;
@@ -69,7 +81,7 @@ const AuthProvider = ({ children }) => {
     signIn,
     logOut,
     updateUserProfile,
-    googleSignIn
+    googleSignIn,
   };
 
   return (
