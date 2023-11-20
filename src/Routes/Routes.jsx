@@ -9,6 +9,8 @@ import SignUp from './../Pages/SignUp/SignUp';
 import Dashboard from './../Layout/Dashboard';
 import Cart from './../Pages/Dashboard/Cart/Cart';
 import AllUsers from '../Pages/Dashboard/AllUsers/AllUsers';
+import AddItems from '../Pages/Dashboard/AddItems.jsx/AddItems';
+import AdminRoute from './AdminRoute/AdminRoute';
 
 const Routes = createBrowserRouter([
     {
@@ -40,14 +42,22 @@ const Routes = createBrowserRouter([
           element:<PrivateRoute><Dashboard /></PrivateRoute>,
           children: [
    
+            // normal user routes 
+
             {
                 path:'/dashboard/cart',
                 element:<Cart />
             },
+            
+            
             // Admin Routes
             {
                 path:'/dashboard/allusers',
                 element:<AllUsers />
+            },
+            {
+                path:'/dashboard/addItems',
+                element:<AdminRoute><AddItems /></AdminRoute>
             },
           ]
         },
