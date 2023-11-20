@@ -69,7 +69,7 @@ const handleMakeAdmin = id => {
     <div className='flex flex-col items-center py-8'>
       <div className="flex justify-evenly gap-8 my-4">
 <h2 className='text-3xl'>All Users</h2>
-<h2 className='text-3xl'>Total Users: {data.length}</h2>
+<h2 className='text-3xl'>Total Users: {data?.length}</h2>
       </div>
 
 

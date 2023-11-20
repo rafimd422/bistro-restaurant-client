@@ -1,20 +1,19 @@
-import { FaAd, FaBook, FaEnvelope, FaHome, FaList, FaSearch, FaShoppingCart, FaUsers, FaUtensils } from "react-icons/fa"
+import { FaBook, FaEnvelope, FaHome, FaList, FaSearch, FaShoppingCart, FaUsers, FaUtensils } from "react-icons/fa"
 import { NavLink, Outlet } from "react-router-dom"
-import useCart from './../Hooks/useCart';
 import useAdmin from "../Hooks/useAdmin";
 
 const Dashboard = () => {
-const cart = useCart()
 
-const [isAdmin] = useAdmin();
+ const [isAdmin] = useAdmin();
+ console.log([isAdmin])
   return (
 <div className="flex gap-4">
 <div >
 <div className="w-64 min-h-screen bg-orange-400 text-white">
 <ul className="menu self pt-16 gap-2">
-{isAdmin ? <>
+{[isAdmin] ? <>
   <li>
- <NavLink to={'/dashboard/userHome'}> <FaHome /> Admin Home</NavLink>
+ <NavLink to={'/dashboard'}> <FaHome /> Admin Home</NavLink>
   </li>
   <li>
  <NavLink to={'/dashboard/addItems'}> <FaUtensils />Add Items</NavLink>

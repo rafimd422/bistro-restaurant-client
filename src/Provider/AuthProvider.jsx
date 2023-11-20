@@ -66,7 +66,6 @@ const AuthProvider = ({ children }) => {
              localStorage.setItem("access-token", res.data?.token);
            }           
              //remove token(if token stored in the client side localStorage or somewhere else)
-          
          });
       }
       setLoading(false);
