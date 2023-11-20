@@ -7,7 +7,7 @@ const Main = () => {
 
 const location = useLocation()
 console.log(location)
-const noHeaderFooter = location.pathname.includes('login') || location.pathname.includes('register')
+const noHeaderFooter = location.pathname.includes('login') || location.pathname.includes('register') || location.pathname.includes('dashboard')
 
   return (
     <div className='w-full'>
