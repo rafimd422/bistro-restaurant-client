@@ -31,12 +31,10 @@ const FoodCard = (item) => {
         text: "You have to log in first!",
         icon: "warning",
       });
-      console.log(item);
       navigate("/login");
     }
     axiosSecure.post('/carts', cartItem)
 .then(res => {
-  console.log(res.data)
   if(res.data?.acknowledged){
     swal("Good job!", "Product Added to the Cart", "success");
     refetch()

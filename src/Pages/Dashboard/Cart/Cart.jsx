@@ -22,7 +22,6 @@ const totalPrice = cart.reduce((a, b) => {
         axios
           .delete(`http://localhost:5000/carts/${id}`)
           .then((res) => {
-            console.log(res.data);
             if (res.data?.deletedCount > 0) {
               swal("Deleted!", "Your file has been deleted.", "success");
               refetch();

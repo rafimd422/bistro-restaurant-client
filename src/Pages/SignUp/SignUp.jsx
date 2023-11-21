@@ -32,7 +32,6 @@ const signUp = () => {
       .then((result) => {
         
         const user = result.user
-        console.log(user);
         updateUserProfile(name, photoURL)
   const userInfo = {
     name: name,
@@ -40,7 +39,6 @@ const signUp = () => {
   }
   axiosPublic.post('/users', userInfo)
   .then(res => {
-    console.log(res.data)
     console.log('user added to the database')
   })
         navigate('/')

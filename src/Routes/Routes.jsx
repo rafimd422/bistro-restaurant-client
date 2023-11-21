@@ -12,6 +12,8 @@ import AllUsers from '../Pages/Dashboard/AllUsers/AllUsers';
 import AddItems from '../Pages/Dashboard/AddItems.jsx/AddItems';
 import AdminRoute from './AdminRoute/AdminRoute';
 import ManageItems from '../Pages/Dashboard/ManageItems/ManageItems';
+import Update from '../Pages/Dashboard/Update/Update';
+import axios from 'axios';
 
 const Routes = createBrowserRouter([
     {
@@ -63,6 +65,11 @@ const Routes = createBrowserRouter([
             {
                 path:'/dashboard/manageItems',
                 element:<ManageItems />
+            },
+            {
+                path:'/dashboard/update/:id',
+                element:<AdminRoute>< Update/></AdminRoute>,
+                loader: ({params}) => axios.get(`http://localhost:5000/menu/${params.id}`)
             },
           ]
         },

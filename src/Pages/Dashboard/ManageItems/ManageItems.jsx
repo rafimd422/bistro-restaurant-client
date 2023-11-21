@@ -5,6 +5,9 @@ import swal from 'sweetalert';
 import axios from 'axios';
 import useAdmin from '../../../Hooks/useAdmin';
 import useMenu from './../../../Hooks/useMenu';
+import { Link } from 'react-router-dom';
+
+
 
 const ManageItems = () => {
 
@@ -50,9 +53,6 @@ const handleDeleteItem = id => {
   
 
 
-// const handleUpdate = id => {
-
-// }
 
 
 if(!isAdmin){
@@ -103,12 +103,11 @@ if(!isAdmin){
                   </button>
                 </th>
                 <th>
-                  <button
-                    onClick={() => handleUpdate(item?._id)}
+                  <Link to={`/dashboard/update/${item._id}`}><button
                     className="btn btn-ghost btn-xs"
                   >
                     <FaEdit className="text-xl" />
-                  </button>
+                  </button></Link>
                 </th>
               </tr>
             ))}

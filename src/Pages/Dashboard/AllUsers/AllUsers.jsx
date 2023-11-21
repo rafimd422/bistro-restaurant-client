@@ -51,7 +51,6 @@ const handleMakeAdmin = id => {
         if (willDelete) {
     axiosSecure.patch(`/users/admin/${id}`)
     .then(res => {
-        console.log(res.data)
         if(res.data.modifiedCount > 0){
             refetch()
             swal("user got the admin role!", {

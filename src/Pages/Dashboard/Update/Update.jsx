@@ -1,21 +1,23 @@
-import React from "react";
-import SectionTitle from "./../../../Components/SectionTitle/SectionTitle";
+import SectionTitle from './../../../Components/SectionTitle/SectionTitle';
+import { useLoaderData } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import { FaUtensilSpoon } from "react-icons/fa";
-import useAxiosPublic from "../../../Hooks/useAxiosPublic";
-import useAxiosSecure from "../../../Hooks/useAxiosSecure";
-import swal from "sweetalert";
+import useAxiosSecure from '../../../Hooks/useAxiosSecure';
+import swal from 'sweetalert';
 
-const IMAGE_HOSTING_KEY = import.meta.env.VITE_IMAGE_HOSTING_KEY;
-const imageHostingApi = `https://api.imgbb.com/1/upload?key=${IMAGE_HOSTING_KEY}`;
 
-const AddItems = () => {
-  const axiosPublic = useAxiosPublic();
-  const axiosSecure = useAxiosSecure();
+
+const Update = () => {
+  const item = useLoaderData()
+  const indItem = item?.data;
+  const {name, category, recipe,price, _id, } = indItem;
+  console.log(indItem)
   const { register, handleSubmit } = useForm();
+  const axiosSecure = useAxiosSecure()
+  const axiosPublic = useAxiosSecure()
+
 
   const onSubmit = async (data) => {
-
     const imageFile = { image: data.image[0] };
     const res = await axiosPublic.post(imageHostingApi, imageFile, {
       headers: {
@@ -23,9 +25,8 @@ const AddItems = () => {
       },
     });
 
-
     if (res.data?.success) {
-      const menuItem = {
+      const updatedMenuItem = {
         name: data.name,
         category: data.category,
         price: data.price,
@@ -33,12 +34,12 @@ const AddItems = () => {
         image: res.data?.data?.display_url,
       };
 
-      const menuRes = await axiosSecure.post("/menu", menuItem);
+      const menuRes = await axiosSecure.patch(`/menu/${_id}`, updatedMenuItem);
 
       if (menuRes.data.insertedId) {
         swal({
           title: "Good job!",
-          text: `${menuItem?.name} is Added!`,
+          text: `Item is Updated Successfully!`,
           icon: "success",
           button: "Aww yiss!",
         });
@@ -46,9 +47,12 @@ const AddItems = () => {
     }
   };
 
+
+  
   return (
-    <div className="py-8">
-      <SectionTitle heading="Add an item" subHeading="What's new?" />
+    <div>
+      <SectionTitle heading={'Update An Item'} subHeading={'Refresh info'} />
+
       <div>
         <form onSubmit={handleSubmit(onSubmit)}>
           {/* Recipe Name */}
@@ -59,6 +63,7 @@ const AddItems = () => {
             <input
               type="text"
               required
+              defaultValue={name}
               {...register("name")}
               placeholder="Recipe Name"
               className="input input-bordered w-full"
@@ -74,7 +79,7 @@ const AddItems = () => {
               </label>
               <select
                 required
-                defaultValue="default"
+                defaultValue={category}
                 {...register("category")}
                 className="select select-bordered w-full"
               >
@@ -97,6 +102,7 @@ const AddItems = () => {
               <input
                 type="number"
                 required
+                defaultValue={price}
                 {...register("price")}
                 className="select select-bordered w-full"
               />
@@ -109,6 +115,7 @@ const AddItems = () => {
               <span className="label-text">Recipe Details</span>
             </label>
             <textarea
+            defaultValue={recipe}
               className="textarea textarea-bordered"
               {...register("recipe")}
               required
@@ -122,6 +129,7 @@ const AddItems = () => {
               type="file"
               className="file-input w-full max-w-xs"
               required
+
               {...register("image", { required: true })}
             />
           </div>
@@ -129,14 +137,15 @@ const AddItems = () => {
           {/* Submit Button */}
           <button
             type="submit"
-            className="btn bg-gradient-to-r from-yellow-900 to-yellow-700"
+            className="btn bg-gradient-to-r from-yellow-900 to-yellow-700 ms-1"
           >
-            <FaUtensilSpoon /> Add Item
+            Update Item
           </button>
         </form>
       </div>
-    </div>
-  );
-};
 
-export default AddItems;
+    </div>
+  )
+}
+
+export default Update
