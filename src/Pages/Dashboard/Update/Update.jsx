@@ -34,6 +34,7 @@ const Update = () => {
         image: res.data?.data?.display_url,
       };
 
+      
       const menuRes = await axiosSecure.patch(`/menu/${_id}`, updatedMenuItem);
 
       if (menuRes.data.insertedId) {
