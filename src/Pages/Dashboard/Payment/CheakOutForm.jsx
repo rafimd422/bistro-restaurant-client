@@ -70,8 +70,21 @@ if(confirmError){
     setTransactionId(paymentIntent?.id)
   }
 
+//now save the payment in the database
+
+const payment = {
+  email: user.email,
+  price: totalPrice,
+  transactionId: paymentIntent?.id,
+  date: new Date(), // convert to UTC Date. use moment js.
+  cartId: cart.map(item => item._id),
+  status: 'Under Processing'
 }
 
+const res = await axiosSecure.post('/payments', payment)
+console.log('payment saved', res.data)
+
+}
   };
 
   return (

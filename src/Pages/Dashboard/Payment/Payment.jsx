@@ -19,8 +19,6 @@ export default function Payment(){
           <CheakOutForm  />
         </Elements>
     </div>
-    
-    
     </div>
   )
 }
