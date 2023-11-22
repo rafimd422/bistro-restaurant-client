@@ -1,9 +1,9 @@
 import SectionTitle from './../../../Components/SectionTitle/SectionTitle';
 import { useLoaderData } from 'react-router-dom';
 import { useForm } from "react-hook-form";
-import { FaUtensilSpoon } from "react-icons/fa";
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import swal from 'sweetalert';
+import useAxiosPublic from '../../../Hooks/useAxiosPublic';
 
 
 
@@ -14,7 +14,11 @@ const Update = () => {
   console.log(indItem)
   const { register, handleSubmit } = useForm();
   const axiosSecure = useAxiosSecure()
-  const axiosPublic = useAxiosSecure()
+  const axiosPublic = useAxiosPublic()
+
+  const IMAGE_HOSTING_KEY = import.meta.env.VITE_IMAGE_HOSTING_KEY;
+const imageHostingApi = `https://api.imgbb.com/1/upload?key=${IMAGE_HOSTING_KEY}`;
+
 
 
   const onSubmit = async (data) => {
@@ -34,10 +38,10 @@ const Update = () => {
         image: res.data?.data?.display_url,
       };
 
-      
+
       const menuRes = await axiosSecure.patch(`/menu/${_id}`, updatedMenuItem);
 
-      if (menuRes.data.insertedId) {
+      if (menuRes?.data?.modifiedCount > 0) {
         swal({
           title: "Good job!",
           text: `Item is Updated Successfully!`,
