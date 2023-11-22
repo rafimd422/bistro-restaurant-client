@@ -15,6 +15,7 @@ import ManageItems from '../Pages/Dashboard/ManageItems/ManageItems';
 import Update from '../Pages/Dashboard/Update/Update';
 import axios from 'axios';
 import Payment from '../Pages/Dashboard/Payment/Payment';
+import PaymentHistory from '../Pages/Dashboard/PaymentHsitory/PaymentHistory';
 
 const Routes = createBrowserRouter([
     {
@@ -55,6 +56,10 @@ const Routes = createBrowserRouter([
             {
                 path:'/dashboard/payment',
                 element:<Payment />
+            },
+            {
+                path:'/dashboard/paymenthistory',
+                element:<PaymentHistory />
             },
             
             

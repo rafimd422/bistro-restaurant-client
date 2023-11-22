@@ -12,7 +12,7 @@ export default function CheakOutForm() {
   const stripe = useStripe();
   const elements = useElements();
   const axiosSecure = useAxiosSecure();
-  const [cart] = useCart();
+  const [cart, refetch] = useCart();
   const totalPrice = cart.reduce((total, item) => total + item.price, 0);
   const { user } = useContext(AuthContext);
   useEffect(() => {
@@ -80,10 +80,9 @@ const payment = {
   cartId: cart.map(item => item._id),
   status: 'Under Processing'
 }
-
 const res = await axiosSecure.post('/payments', payment)
 console.log('payment saved', res.data)
-
+refetch()
 }
   };
 
