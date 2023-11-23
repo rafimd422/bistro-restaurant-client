@@ -32,7 +32,7 @@ const Dashboard = () => {
             {isAdmin && (
               <>
                 <li>
-                  <NavLink to={"/dashboard"}>
+                  <NavLink to={"/dashboard/adminhome"}>
                     {" "}
                     <FaHome /> Admin Home
                   </NavLink>

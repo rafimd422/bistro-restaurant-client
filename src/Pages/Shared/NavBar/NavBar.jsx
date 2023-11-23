@@ -4,11 +4,13 @@ import { AuthContext } from './../../../Provider/AuthProvider';
 import swal from "sweetalert";
 import { FaShoppingCart } from "react-icons/fa";
 import useCart from "../../../Hooks/useCart";
+import useAdmin from "../../../Hooks/useAdmin";
 
 const NavBar = () => {
 
 const {logOut, user} = useContext(AuthContext)
 const [cart] = useCart()
+const [isAdmin] = useAdmin()
 
 const handleLogOut = () => {
 
@@ -38,7 +40,14 @@ swal("Log Out Successfull", {
         <NavLink to={"/contact"}>Contact</NavLink>
       </li>
       <li>
-        <NavLink to={"/dashboard"}>Dashboard</NavLink>
+      
+{
+user && isAdmin &&   <NavLink to={"/dashboard/adminhome"}>Dashboard</NavLink>
+}
+{
+  user && !isAdmin &&   <NavLink to={"/dashboard/userhome"}>Dashboard</NavLink>
+}
+
       </li>
       <li>
         <NavLink to={"/menu"}>Our Menu</NavLink>
@@ -89,7 +98,6 @@ swal("Log Out Successfull", {
        {user == null ?  <Link to={"/login"}>
           <button className="btn">Log in</button>
         </Link> : <button onClick={handleLogOut} className="btn">Log Out</button>}
-          
       </div>
     </div>
   );

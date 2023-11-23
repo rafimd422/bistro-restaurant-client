@@ -16,6 +16,8 @@ import Update from '../Pages/Dashboard/Update/Update';
 import axios from 'axios';
 import Payment from '../Pages/Dashboard/Payment/Payment';
 import PaymentHistory from '../Pages/Dashboard/PaymentHsitory/PaymentHistory';
+import UserHome from '../Pages/Dashboard/UserHome/UserHome';
+import AdminHome from '../Pages/Dashboard/AdminHome/AdminHome';
 
 const Routes = createBrowserRouter([
     {
@@ -50,6 +52,10 @@ const Routes = createBrowserRouter([
             // normal user routes 
 
             {
+                path:'/dashboard/userhome',
+                element:<UserHome />
+            },
+            {
                 path:'/dashboard/cart',
                 element:<Cart />
             },
@@ -67,6 +73,10 @@ const Routes = createBrowserRouter([
             {
                 path:'/dashboard/allusers',
                 element:<AllUsers />
+            },
+            {
+                path:'/dashboard/adminhome',
+                element:<AdminRoute><AdminHome /></AdminRoute>
             },
             {
                 path:'/dashboard/addItems',
