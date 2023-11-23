@@ -1,35 +1,34 @@
 import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
-import { AuthContext } from './../../../Provider/AuthProvider';
+import { AuthContext } from "./../../../Provider/AuthProvider";
 import swal from "sweetalert";
 import { FaShoppingCart } from "react-icons/fa";
 import useCart from "../../../Hooks/useCart";
 import useAdmin from "../../../Hooks/useAdmin";
 
 const NavBar = () => {
+  const { logOut, user,setLoading } = useContext(AuthContext);
+  const [cart] = useCart();
+  const [isAdmin] = useAdmin();
 
-const {logOut, user} = useContext(AuthContext)
-const [cart] = useCart()
-const [isAdmin] = useAdmin()
-
-const handleLogOut = () => {
-
-  swal({
-    title: "Do you want to Log Out From This Account?",
-    icon: "warning",
-    buttons: true,
-    dangerMode: true,
-  }).then((willDelete) => {
-    if (willDelete) {
-      logOut()
-      .then(() => {
-        localStorage.removeItem("access-token");
-      })
-swal("Log Out Successfull", {
-  icon: "success",
-});}
-});
-}
+  const handleLogOut = () => {
+    swal({
+      title: "Do you want to Log Out From This Account?",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        logOut().then(() => {
+          localStorage.removeItem("access-token");
+          setLoading(false);
+        });
+        swal("Log Out Successfull", {
+          icon: "success",
+        });
+      }
+    });
+  };
 
   const navOptions = (
     <>
@@ -40,14 +39,12 @@ swal("Log Out Successfull", {
         <NavLink to={"/contact"}>Contact</NavLink>
       </li>
       <li>
-      
-{
-user && isAdmin &&   <NavLink to={"/dashboard/adminhome"}>Dashboard</NavLink>
-}
-{
-  user && !isAdmin &&   <NavLink to={"/dashboard/userhome"}>Dashboard</NavLink>
-}
-
+        {user && isAdmin && (
+          <NavLink to={"/dashboard/adminhome"}>Dashboard</NavLink>
+        )}
+        {user && !isAdmin && (
+          <NavLink to={"/dashboard/userhome"}>Dashboard</NavLink>
+        )}
       </li>
       <li>
         <NavLink to={"/menu"}>Our Menu</NavLink>
@@ -56,10 +53,13 @@ user && isAdmin &&   <NavLink to={"/dashboard/adminhome"}>Dashboard</NavLink>
         <NavLink to={"/shop"}>Our shop</NavLink>
       </li>
       <li className="indicator">
-  <span className="flex items-center indicator-item badge badge-primary">{cart.length}</span> 
-  <NavLink className={'text-lg'} to={'/dashboard/cart'}><FaShoppingCart />
-</NavLink>
-</li>
+        <span className="flex items-center indicator-item badge badge-primary">
+          {cart.length}
+        </span>
+        <NavLink className={"text-lg"} to={"/dashboard/cart"}>
+          <FaShoppingCart />
+        </NavLink>
+      </li>
     </>
   );
   return (
@@ -95,9 +95,15 @@ user && isAdmin &&   <NavLink to={"/dashboard/adminhome"}>Dashboard</NavLink>
         <ul className="menu menu-horizontal px-1 uppercase">{navOptions}</ul>
       </div>
       <div className="navbar-end">
-       {user == null ?  <Link to={"/login"}>
-          <button className="btn">Log in</button>
-        </Link> : <button onClick={handleLogOut} className="btn">Log Out</button>}
+        {user == null ? (
+          <Link to={"/login"}>
+            <button className="btn">Log in</button>
+          </Link>
+        ) : (
+          <button onClick={handleLogOut} className="btn">
+            Log Out
+          </button>
+        )}
       </div>
     </div>
   );

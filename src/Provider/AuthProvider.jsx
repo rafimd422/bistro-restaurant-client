@@ -64,11 +64,11 @@ const AuthProvider = ({ children }) => {
          .then(res => {
            if (res.data?.token) {
              localStorage.setItem("access-token", res.data?.token);
-           }           
+             setLoading(false);
+            }           
              //remove token(if token stored in the client side localStorage or somewhere else)
          });
       }
-      setLoading(false);
     });
     return unSubscribe;
   }, []);
@@ -76,6 +76,7 @@ const AuthProvider = ({ children }) => {
   const authInfo = {
     user,
     loading,
+    setLoading,
     createUSer,
     signIn,
     logOut,
